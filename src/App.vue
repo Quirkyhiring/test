@@ -4,9 +4,9 @@
     <div class = "premium">
       Premium Package
     </div>
-    <v-stepper v-model="e1" alt-labels justify-center>
-    <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px">1. Billing Cycle</v-stepper-step>
+    <v-stepper v-model="e1" alt-labels justify-center class = "elevation-0">
+    <v-stepper-header class = "elevation-0">
+      <v-stepper-step :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px" >1. Billing Cycle</v-stepper-step>
 
       <v-divider color = "#3CB1E5"></v-divider>
 
@@ -98,16 +98,16 @@
             </v-card>
         </v-col>
       </v-row>
-      <v-row no-gutters>
+      <v-row no-gutters style = "padding-left: 10px; padding-right: 10px">
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify="start"> 
-            <v-btn class="ma-2" tile outlined color="grey darken-2">CANCEL
+            <v-btn class="button" tile outlined color="grey darken-2">CANCEL
           </v-btn>
           </v-row>
         </v-col>
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify = "end">
-            <v-btn class="ma-2" tile outlined color="primary" @click="e1 = 2" :disabled="!isCycleSelected?'':disabled">NEXT
+            <v-btn class="button" tile outlined color="primary" @click="e1 = 2" :disabled="!isCycleSelected?'':disabled">NEXT
             <v-icon right>mdi-arrow-right</v-icon> 
           </v-btn>
           </v-row>
@@ -119,7 +119,7 @@
         <div class = "billing"> Payment Method </div>
         <v-row no-gutters="">
           <v-col cols="12" sm="6">
-            <v-card style="padding-top: 50px; padding-bottom: 50px; margin: 10px" @click = "onMasterCard()">
+            <v-card class = "card-payment" @click = "onMasterCard()">
               <v-row justify="center" align="center">
               <v-col cols="13" sm="1">
               <v-checkbox v-model="bMasterCard"></v-checkbox>
@@ -167,12 +167,12 @@
           </v-col>
 
           <v-col cols="12" sm="6">
-            <v-card style="padding: 40px; margin: 10px" @click = "onPayPal()">
-              <v-row  justify = "center" align = "center">
-                <v-col cols="12" sm="1" justify = "center" align = "center">
+            <v-card class = "card-payment" style = "padding: 20px" @click = "onPayPal()">
+              <v-row justify="center" align="center">
+                <v-col cols="12" sm="1" justify="center" align="center">
                   <v-checkbox v-model="bPayPal"></v-checkbox>
                 </v-col>
-                <v-col cols="12" sm="11" justify = "center" align = "center">
+                <v-col cols="12" sm="11" justify="center" align="center">
                 <svg width="105" height="102" viewBox="0 0 105 102" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="105" height="102" fill="url(#pattern2)"/>
                 <defs>
@@ -187,7 +187,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row style="padding: 10px">
           <v-col cols="12" sm="6" v-if="bMasterCard == true">
             <v-row>
                <v-col cols="12" sm="6" md="6">
@@ -195,8 +195,6 @@
                 class = "text-form"
                   label="FirstName"
                   v-model="FirstName"
-                  :rules="[() => !!FirstName || 'This field is required']"
-                  required
                   filled
                 ></v-text-field>
               </v-col>
@@ -205,24 +203,16 @@
                 class = "text-form"
                   label="LastName"
                   v-model="LastName"
-                  :rules="[() => !!LastName || 'This field is required']"
-                  required
                   filled
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-row>
-               <v-col cols="12" sm="12" md="12">
-                <v-text-field
-                class = "text-form"
-                  label="Credit Number Card"
-                  v-model="CreditNumberCard"
-                  :rules="[() => !!CreditNumberCard || 'This field is required']"
-                  required
-                  filled
-                ></v-text-field>
-              </v-col>
-            </v-row>
+            <v-text-field
+            class = "text-form"
+              label="Credit Number Card"
+              v-model="CreditNumberCard"
+              filled
+            ></v-text-field>
             <p class="text-expiration"> Expiration Date </p>
             <v-row>
               <v-col cols="12" sm="3" md="3">
@@ -232,8 +222,6 @@
                 v-model="month"
                 :items="months"
                 label="MM"
-                :rules="[() => !!month || 'This field is required']"
-                required
                 filled
               ></v-autocomplete>
               </v-col>
@@ -244,8 +232,6 @@
                 v-model="year"
                 :items="years"
                 label="YY"
-                :rules="[() => !!year || 'This field is required']"
-                required
                 filled
               ></v-autocomplete>
               </v-col>
@@ -254,49 +240,35 @@
                 class = "text-form"
                   label="Security Code"
                   v-model="SecurityCode"
-                  :rules="[() => !!SecurityCode || 'This field is required']"
-                  required
                   filled
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-row>
-              <v-col cols="12" sm="12" md="12">
-                <v-autocomplete
-                class = "text-form"
-                ref="country"
-                v-model="country"
-                :items="countries"
-                label="Country"
-                :rules="[() => !!country || 'This field is required']"
-                required
-                filled
-              ></v-autocomplete>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" sm="12" md="12">
-                  <v-text-field
-                    class = "text-form"
-                    label="Credit Number Card"
-                    v-model="CreditNumberCard"
-                    :rules="[() => !!CreditNumberCard || 'This field is required']"
-                    required
-                    filled>
-                  </v-text-field>
-                </v-col>
-              </v-row>
+              <v-autocomplete
+              class = "text-form"
+              ref="country"
+              v-model="country"
+              :items="countries"
+              label="Country"
+              filled
+            ></v-autocomplete>
+            <v-text-field
+              class = "text-form"
+              label="Postal Code"
+              v-model="PostalCode"
+              filled>
+            </v-text-field>
               <v-row no-gutters>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                   <v-row no-gutters justify="start"> 
-                  <v-btn class="ma-2" tile outlined color="grey darken-2" @click="e1 = 1">
+                  <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 1">
                     <v-icon left >mdi-arrow-left</v-icon> BACK
                 </v-btn>
                 </v-row>
               </v-col>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                 <v-row no-gutters justify = "end">
-                  <v-btn class="ma-2" tile outlined color="primary" @click="e1 = 3" :disabled="!isPaymentMethodSelected?'':disabled">NEXT
+                  <v-btn class="button" tile outlined color="primary" @click="e1 = 3" :disabled="!isPaymentMethodSelected?'':disabled">NEXT
                   <v-icon right>mdi-arrow-right</v-icon> 
                 </v-btn>
                 </v-row>
@@ -434,8 +406,7 @@
 
       <v-stepper-content step="3">
         <div class="billing"> Review Order </div>
-          <v-card>
-          
+          <v-card style = "margin-bottom: 50px">
           <v-card-text>
             <v-row>
               <v-col cols="12" sm="6">
@@ -488,7 +459,7 @@
       <v-row no-gutters>
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify="start"> 
-            <v-btn class="ma-2" tile outlined color="grey darken-2" @click="e1 = 2">
+            <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 2">
               <v-icon left >mdi-arrow-left</v-icon> BACK
           </v-btn>
           </v-row>
@@ -497,7 +468,7 @@
         <v-row justify="end">
           <v-dialog v-model="dialog" persistent width="400px" height="226px">
             <template v-slot:activator="{ on }">
-              <v-btn class = "ma-2" color="info" dark v-on="on">PLACE ORDER</v-btn>
+              <v-btn @click = "onPlaceOrder()" class = "button" style = "margin-right: 12px" color="info" v-on="on">PLACE ORDER </v-btn>
             </template>
             <v-card>
               <v-card-text style = "padding: 20px 60px 20px 50px">
@@ -524,9 +495,11 @@
 
 <script>
 
+
 export default{
 
   data: () => ({
+
     curDate: "",
     expireDate: "",
     dialog: false,
@@ -538,11 +511,17 @@ export default{
     e1: 1,
     isCycleSelected:false,
     isPaymentMethodSelected: false,
-    type:""
-
+    type:"",
+    FirstName:"",
+    LastName:"",
+    CreditNumberCard:"",
+    month:"",
+    year:"",
+    SecurityCode:"",
+    country:"",
+    PostalCode:""
   }),
   methods:{
-    
     onMonth()
       {
         this.isCycleSelected = true;
@@ -565,7 +544,30 @@ export default{
       this.bMasterCard = false;
     },
     onPlaceOrder(){
-
+      console.log("onPlaceOrder");
+      this.$store.dispatch('postData', {
+        id: 1,
+        payment_method: "VIS",
+        "first_name": this.first_name,
+        "last_name": this.last_name,
+        "card_number": this.CreditNumberCard,
+        "expiration_month": this.month,
+        "expiration_year": this.year,
+        "cvv": "090",
+        "country": this.country,
+        "postal_code": this.postal_code,
+        "save_info": false,
+        "metadata": null,
+        "account": 1
+      })
+      .then(resp =>{
+        if(resp.status == 200){
+          console.log("success");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
     },
     onOKAY(){
       this.e1 = 1;
@@ -576,7 +578,7 @@ created()
     {
         this.curDate = new Date().toDateString();
         this.expireDate = new Date();
-        this.expireDate.setDate(this.expireDate.getMonth() + 1);
+        this.expireDate.setDate(this.expireDate.getDate() + 30);
         this.expireDate = this.expireDate.toDateString();
     }
    
