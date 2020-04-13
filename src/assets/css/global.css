@@ -1,4 +1,7 @@
-
+@font-face {
+  font-family: Acumin Pro;
+  src: url(Acumin-RPro.otf);
+}
 .premium{
     /* Title */
     padding: 10px;
@@ -112,4 +115,54 @@
     background-color: #3CB1E5;
     width: 100%;
     height: 10px;
+  }
+  .text-expiration{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: rgba(77, 79, 92, 0.62);
+  }
+  .text-review{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .text-form{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+  .text-dialog{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 30px;
+    /* or 136% */
+
+    display: flex;
+    align-items: center;
+
+    color: #4D4F5C;
+  }
+  .text-okay{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* or 150% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
   }
