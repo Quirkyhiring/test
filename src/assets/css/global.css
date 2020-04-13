@@ -33,7 +33,7 @@
     
     box-shadow: 0px 2px 6px rgba(82, 82, 82, 0.25);
     border-radius: 6px;
-    height: 200px;
+    height: 195px;
   }
   .SubTitle{
     font-family: Acumin Pro;
@@ -111,5 +111,5 @@
   .avatar-box{
     background-color: #3CB1E5;
     width: 100%;
-    height: 20px;
+    height: 10px;
   }

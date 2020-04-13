@@ -4,17 +4,16 @@
     <div class = "premium">
       Premium Package
     </div>
-    <v-stepper v-model="e1">
+    <v-stepper v-model="e1" alt-labels justify-center>
     <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1">1. Billing Cycle</v-stepper-step>
+      <v-stepper-step :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px">1. Billing Cycle</v-stepper-step>
 
-      <v-divider></v-divider>
+      <v-divider color = "#3CB1E5"></v-divider>
 
-      <v-stepper-step :complete="e1 > 2" step="2">2. Payment Method</v-stepper-step>
+      <v-stepper-step :complete="e1 > 2" step="2" color="#3CB1E5" style = "font-size:13px">2. Payment Method</v-stepper-step>
+      <v-divider color = "#3CB1E5"></v-divider>
 
-      <v-divider></v-divider>
-
-      <v-stepper-step step="3">3. Review Order</v-stepper-step>
+      <v-stepper-step step="3" color="#3CB1E5" style = "font-size:13px">3. Review Order</v-stepper-step>
           </v-stepper-header>
           <v-stepper-items>
       <v-stepper-content step="1">
@@ -42,7 +41,7 @@
 
           </v-card-text>
           <div v-if="type === '$15 each month'">
-            <v-avatar tile color="#3CB1E5" width="100%" height="20px" style="border-radius: 6px">
+            <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
             </v-avatar>
           </div>
         </v-card>
@@ -68,7 +67,7 @@
               </div>
             </v-card-text>
             <div v-if="type === '$126 each year'">
-              <v-avatar tile color="#3CB1E5" width="100%" height="20px" style="border-radius: 6px">
+              <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
               </v-avatar>
             </div>
           </v-card>
