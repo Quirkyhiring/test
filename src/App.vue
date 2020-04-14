@@ -633,10 +633,10 @@ export default{
       this.laste1 = this.e1;
       curSel = steps[this.e1 - 1];
       console.log(curSel);
-      curSel.style.width = '24px';
-      curSel.style.height = '24px';
+      curSel.style.width = '46px';
+      curSel.style.height = '46px';
       curSel.innerHTML = "•";
-      curSel.style.margin = "0px 0px 10px 0px";
+      curSel.style.margin = "-11px 0px 10px 0px";
     },
 
     onOKAY(){
