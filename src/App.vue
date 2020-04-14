@@ -6,19 +6,22 @@
     </div>
     <v-stepper v-model="e1" alt-labels justify-center class = "elevation-0" size="10px">
 
-    <v-stepper-header class = "elevation-0">
-      <v-stepper-step 
-      :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px"
+    <v-stepper-header class = "elevation-0" justify = "center" align = "center">
+      <v-stepper-step
+      :complete="e1 != 1" step="1" color="#3CB1E5" style = "font-size:13px"
+      complete-icon=""
       >1. Billing Cycle</v-stepper-step>
 
       <v-divider color = "#3CB1E5"></v-divider>
 
-      <v-stepper-step :complete="e1 > 2" step="2" color="#3CB1E5" style = "font-size:13px"
+      <v-stepper-step :complete="e1 != 2" step="2" color="#3CB1E5" style = "font-size:13px" complete-icon=""
       >2. Payment Method</v-stepper-step>
       <v-divider color = "#3CB1E5"
       ></v-divider>
 
       <v-stepper-step  step="3" color="#3CB1E5" style = "font-size:13px"
+      :complete="e1 != 3"
+      complete-icon="" 
       >3. Review Order</v-stepper-step>
     </v-stepper-header>
     <v-stepper-items>
@@ -113,7 +116,7 @@
         </v-col>
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify = "end">
-            <v-btn class="button" tile outlined color="primary" @click="e1 = 2" v-bind:disabled="isCycleSelected">NEXT
+            <v-btn class="button" tile outlined color="primary" @click="e1 = 2, drawCircle()" v-bind:disabled="isCycleSelected">NEXT
             <v-icon right>mdi-arrow-right</v-icon> 
           </v-btn>
           </v-row>
@@ -284,14 +287,14 @@
             <v-row no-gutters>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                   <v-row no-gutters justify="start"> 
-                  <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 1">
+                  <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 1, drawCircle()">
                     <v-icon left >mdi-arrow-left</v-icon> BACK
                 </v-btn>
                 </v-row>
               </v-col>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                 <v-row no-gutters justify = "end">
-                  <v-btn class="button" tile outlined color="primary" @click="e1 = 3" v-bind:disabled="isPaymentMethodSelected">NEXT
+                  <v-btn class="button" tile outlined color="primary" @click="e1 = 3, drawCircle()" v-bind:disabled="isPaymentMethodSelected">NEXT
                   <v-icon right>mdi-arrow-right</v-icon> 
                 </v-btn>
                 </v-row>
@@ -482,7 +485,7 @@
       <v-row no-gutters>
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify="start"> 
-            <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 2">
+            <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 2, drawCircle()">
               <v-icon left >mdi-arrow-left</v-icon> BACK
           </v-btn>
           </v-row>
@@ -531,6 +534,7 @@ export default{
     bMasterCard: false,
     bPayPal: false,
     e1: 1,
+    laste1: 1,
     isCycleSelected:true,
     isPaymentMethodSelected: true,
     type:"",
@@ -615,10 +619,34 @@ export default{
         console.log(err);
       })
     },
+    drawCircle(){
+      
+      console.log("drawCircle");
+      var steps = 
+      document.getElementsByClassName("v-stepper__step__step");
+      var curSel = steps[this.laste1 - 1];
+      console.log(curSel);
+      curSel.style.width = '5px';
+      curSel.style.height = '5px';
+      curSel.style.margin = "8px 0px 10px 0px";
+      curSel.innerHTML = "";
+      this.laste1 = this.e1;
+      curSel = steps[this.e1 - 1];
+      console.log(curSel);
+      curSel.style.width = '24px';
+      curSel.style.height = '24px';
+      curSel.innerHTML = "•";
+      curSel.style.margin = "0px 0px 10px 0px";
+    },
+
     onOKAY(){
       this.e1 = 1;
+      this.drawCircle();
       this.dialog = false;
     }
+    },
+    mounted(){
+      this.drawCircle();
     },
 created()
     {

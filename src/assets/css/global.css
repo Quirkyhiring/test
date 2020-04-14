@@ -178,7 +178,12 @@
     width: 170px;
     height: 48px;
   }
-
+.v-stepper__step__step{
+  margin-top: 8px;
+  width: 5px;
+  height: 5px;
+  min-width: 5px;
+}
   #c_input .row .v-input__slot
   {
     margin: -10px 0px -10px 0px;
