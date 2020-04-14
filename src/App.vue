@@ -4,18 +4,24 @@
     <div class = "premium">
       Premium Package
     </div>
-    <v-stepper v-model="e1" alt-labels justify-center class = "elevation-0">
+    <v-stepper v-model="e1" alt-labels justify-center class = "elevation-0" size="10px">
+
     <v-stepper-header class = "elevation-0">
-      <v-stepper-step :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px" >1. Billing Cycle</v-stepper-step>
+      <v-stepper-step 
+      :complete="e1 > 1" step="1" color="#3CB1E5" style = "font-size:13px"
+      >1. Billing Cycle</v-stepper-step>
 
       <v-divider color = "#3CB1E5"></v-divider>
 
-      <v-stepper-step :complete="e1 > 2" step="2" color="#3CB1E5" style = "font-size:13px">2. Payment Method</v-stepper-step>
-      <v-divider color = "#3CB1E5"></v-divider>
+      <v-stepper-step :complete="e1 > 2" step="2" color="#3CB1E5" style = "font-size:13px"
+      >2. Payment Method</v-stepper-step>
+      <v-divider color = "#3CB1E5"
+      ></v-divider>
 
-      <v-stepper-step step="3" color="#3CB1E5" style = "font-size:13px">3. Review Order</v-stepper-step>
-          </v-stepper-header>
-          <v-stepper-items>
+      <v-stepper-step  step="3" color="#3CB1E5" style = "font-size:13px"
+      >3. Review Order</v-stepper-step>
+    </v-stepper-header>
+    <v-stepper-items>
       <v-stepper-content step="1">
         <div class = "billing"> Billing Cycle </div>
     <v-row no-gutters>
@@ -107,7 +113,7 @@
         </v-col>
         <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
           <v-row no-gutters justify = "end">
-            <v-btn class="button" tile outlined color="primary" @click="e1 = 2" :disabled="!isCycleSelected?'':disabled">NEXT
+            <v-btn class="button" tile outlined color="primary" @click="e1 = 2" v-bind:disabled="isCycleSelected">NEXT
             <v-icon right>mdi-arrow-right</v-icon> 
           </v-btn>
           </v-row>
@@ -189,31 +195,37 @@
         </v-row>
         <v-row style="padding: 10px">
           <v-col cols="12" sm="6" v-if="bMasterCard == true">
+            <v-card style = "padding: 20px; margin-bottom: 40px">
+            <div id="c_input">
             <v-row>
-               <v-col cols="12" sm="6" md="6">
+               <v-col cols="12" sm="6" md="6" >
                 <v-text-field
-                class = "text-form"
-                  label="FirstName"
+                  class = "elevation-0"
+                  label="First name"
                   v-model="FirstName"
-                  filled
+                  solo
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="6">
                 <v-text-field
                 class = "text-form"
-                  label="LastName"
+                  label="Last name"
                   v-model="LastName"
-                  filled
+                  solo
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-text-field
-            class = "text-form"
-              label="Credit Number Card"
-              v-model="CreditNumberCard"
-              filled
-            ></v-text-field>
-            <p class="text-expiration"> Expiration Date </p>
+            <v-row>
+              <v-col cols="12" sm="12">
+              <v-text-field
+              class = "text-form"
+                label="Credit card number"
+                v-model="CreditNumberCard"
+                solo
+              ></v-text-field>
+              </v-col>
+            </v-row>
+            <p class="text-expiration"> Expiration date </p>
             <v-row>
               <v-col cols="12" sm="3" md="3">
                  <v-autocomplete
@@ -222,7 +234,7 @@
                 v-model="month"
                 :items="months"
                 label="MM"
-                filled
+                solo
               ></v-autocomplete>
               </v-col>
               <v-col cols="12" sm="3" md="3">
@@ -232,33 +244,44 @@
                 v-model="year"
                 :items="years"
                 label="YY"
-                filled
+                solo
               ></v-autocomplete>
               </v-col>
                <v-col cols="12" sm="6" md="6">
                 <v-text-field
                 class = "text-form"
-                  label="Security Code"
+                  label="Security code"
                   v-model="SecurityCode"
-                  filled
+                  solo
                 ></v-text-field>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col cols="12" sm="12">
               <v-autocomplete
               class = "text-form"
               ref="country"
               v-model="country"
               :items="countries"
               label="Country"
-              filled
+              solo
             ></v-autocomplete>
+              </v-col>
+            </v-row>
+            <v-row>
+            <v-col cols="12" sm="12">
             <v-text-field
               class = "text-form"
               label="Postal Code"
               v-model="PostalCode"
-              filled>
+              solo>
             </v-text-field>
-              <v-row no-gutters>
+            </v-col>
+            </v-row>
+            </div>
+            <v-checkbox style = "margin-top: -10px;" :label="`Save card information`"> </v-checkbox>
+            </v-card>
+            <v-row no-gutters>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                   <v-row no-gutters justify="start"> 
                   <v-btn class="button" tile outlined color="grey darken-2" @click="e1 = 1">
@@ -268,7 +291,7 @@
               </v-col>
               <v-col cols = "12" xs="6" sm = "6" md = "6" lg = "6" xl = "6">
                 <v-row no-gutters justify = "end">
-                  <v-btn class="button" tile outlined color="primary" @click="e1 = 3" :disabled="!isPaymentMethodSelected?'':disabled">NEXT
+                  <v-btn class="button" tile outlined color="primary" @click="e1 = 3" v-bind:disabled="isPaymentMethodSelected">NEXT
                   <v-icon right>mdi-arrow-right</v-icon> 
                 </v-btn>
                 </v-row>
@@ -411,7 +434,7 @@
             <v-row>
               <v-col cols="12" sm="6">
                 <v-row>
-                  <v-col cols="12" sm="1">
+                  <v-col cols="12" sm="1" justtify = "right" align = "right">
                     <v-avatar color="#3CB1E5" size="6">
                     </v-avatar>
                   </v-col>
@@ -420,7 +443,7 @@
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="12" sm="1">
+                  <v-col cols="12" sm="1" justtify = "right" align = "right">
                     <v-avatar color="#3CB1E5" size="6">
                     </v-avatar>
                   </v-col>
@@ -429,7 +452,7 @@
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="12" sm="1">
+                  <v-col cols="12" sm="1" justtify = "right" align = "right">
                     <v-avatar color="#3CB1E5" size="6">
                     </v-avatar>
                   </v-col>
@@ -495,7 +518,6 @@
 
 <script>
 
-
 export default{
 
   data: () => ({
@@ -503,14 +525,14 @@ export default{
     curDate: "",
     expireDate: "",
     dialog: false,
-    months:['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    months:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     years:['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '1999', '1998', '1997', '1996', '1995', '1994', '1993', '1992', '1991', '1990', '1989', '1988', '1987', '1986', '1985', '1984'],
     countries: ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Anguilla', 'Antigua &amp; Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia &amp; Herzegovina', 'Botswana', 'Brazil', 'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cambodia', 'Cameroon', 'Cape Verde', 'Cayman Islands', 'Chad', 'Chile', 'China', 'Colombia', 'Congo', 'Cook Islands', 'Costa Rica', 'Cote D Ivoire', 'Croatia', 'Cruise Ship', 'Cuba', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Estonia', 'Ethiopia', 'Falkland Islands', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Polynesia', 'French West Indies', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guam', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea Bissau', 'Guyana', 'Haiti', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kuwait', 'Kyrgyz Republic', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macau', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'Netherlands Antilles', 'New Caledonia', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russia', 'Rwanda', 'Saint Pierre &amp; Miquelon', 'Samoa', 'San Marino', 'Satellite', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'St Kitts &amp; Nevis', 'St Lucia', 'St Vincent', 'St. Lucia', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', "Timor L'Este", 'Togo', 'Tonga', 'Trinidad &amp; Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks &amp; Caicos', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Venezuela', 'Vietnam', 'Virgin Islands (US)', 'Yemen', 'Zambia', 'Zimbabwe'],
     bMasterCard: false,
     bPayPal: false,
     e1: 1,
-    isCycleSelected:false,
-    isPaymentMethodSelected: false,
+    isCycleSelected:true,
+    isPaymentMethodSelected: true,
     type:"",
     FirstName:"",
     LastName:"",
@@ -524,42 +546,66 @@ export default{
   methods:{
     onMonth()
       {
-        this.isCycleSelected = true;
+        this.isCycleSelected = false;
         this.type = '$15 each month';
         //alert("asdf");
       },
     onAnnual(){
-      this.isCycleSelected = true;
+      this.isCycleSelected = false;
       this.type = '$126 each year';
       //alert("asdf");      
     },
     onMasterCard(){
-      this.isPaymentMethodSelected = true;
+      this.isPaymentMethodSelected = false;
       this.bMasterCard = true;
       this.bPayPal = false;
     },
     onPayPal(){
-      this.isPaymentMethodSelected = true;
+      this.isPaymentMethodSelected = false;
       this.bPayPal = true;
       this.bMasterCard = false;
     },
     onPlaceOrder(){
       console.log("onPlaceOrder");
+      /*
+      var formData = new FormData();
+      formData.append('payment_method', "VIS");
+      formData.append('first_name', this.first_name);
+      formData.append('last_name', this.last_name);
+      formData.append('card_number', this.CreditNumberCard);
+      formData.append('expiration_month',  this.month);
+      formData.append('expiration_year', this.year);
+      formData.append('cvv', "090");
+      formData.append('country', this.country);
+      formData.append('postal_code', this.postal_code);
+      formData.append('account', 1);
+      Axios.post('http://ec2-18-223-131-167.us-east-2.compute.amazonaws.com:8080/api/billing/payment/', {
+          payment_method: '' + "VIS",
+          first_name: '' + this.first_name,
+          last_name: '' + this.last_name,
+          card_number: '' + this.CreditNumberCard,
+          expiration_month: '' + this.month,
+          expiration_year: '' + this.year,
+          cvv: '' + "090",
+          country: '' + this.country,
+          postal_code: '' + this.postal_code,
+          account: '' + 1
+        })
+        */
+
       this.$store.dispatch('postData', {
-        id: 1,
-        payment_method: "VIS",
-        "first_name": this.first_name,
-        "last_name": this.last_name,
-        "card_number": this.CreditNumberCard,
-        "expiration_month": this.month,
-        "expiration_year": this.year,
-        "cvv": "090",
-        "country": this.country,
-        "postal_code": this.postal_code,
-        "save_info": false,
-        "metadata": null,
-        "account": 1
-      })
+          payment_method: "VIS",
+          first_name: this.first_name,
+          last_name: this.last_name,
+          card_number: this.CreditNumberCard,
+          expiration_month: this.month,
+          expiration_year: this.year,
+          cvv: "090",
+          country: this.country,
+          postal_code: this.postal_code,
+          account: "test31@testing.com"
+         }
+      )
       .then(resp =>{
         if(resp.status == 200){
           console.log("success");
