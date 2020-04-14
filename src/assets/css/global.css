@@ -17,7 +17,7 @@
   
     color: #404040;
   }
-  .billing{
+  .maintitle{
     padding: 10px 10px 20px 10px;
     font-family: Acumin Pro;
     font-style: normal;
@@ -41,6 +41,9 @@
     border-radius: 6px;
     height: 158px;
   }
+  .billing-cardtext{
+    padding: 20px 40px 0px 40px;
+  }
   .card-payment:focus{
     background-color: #D3EDF9;
   }
@@ -50,43 +53,38 @@
     height: 220px;
     display: flex;
   }
+  .card-title{
+    font-family: Acumin Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    /* or 162% */
+    display: flex;
+    align-items: center;
+    color: #263238;
+  }
   .SubTitle{
+    padding: 10px 0px 30px 0px;
     font-family: Acumin Pro;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    padding: 20px 10px 0px 20px;
     /* or 361% */
     display: flex;
     align-items: center;
     color: #555555;
   }
   .Price{
-    padding-right: 20px;
     font-family: Acumin Pro;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
-    padding-top: 10px;
     /* or 203% */
     text-align: right;
     color: #082947;
   }
   
-  .card-title{
-    padding-left: 20px;
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    padding-top: 10px;
-    /* or 162% */
-    display: flex;
-    align-items: center;
-    color: #263238;
-  }
   .today-title{
-    padding-left: 20px;
     font-family: Acumin Pro;
     font-style: normal;
     font-weight: 500;
@@ -99,7 +97,7 @@
     color: #3E3E3E;
   }
   .today-subtitle{
-    padding: 20px 60px 0px 20px;
+    padding: 10px 0px 30px 0px;
     font-family: Acumin Pro;
     font-style: normal;
     font-weight: normal;
@@ -112,8 +110,6 @@
     color: #555555;
   }
   .today-price{
-    padding-right: 20px;
-    padding-top: 10px;
     font-family: Acumin Pro;
     font-style: normal;
     font-weight: 500;
@@ -123,11 +119,7 @@
     display: flexbox;
     color: #3E3E3E;
   }
-  .avatar-box{
-    background-color: #3CB1E5;
-    width: 100%;
-    height: 10px;
-  }
+  
   .text-expiration{
     font-family: Acumin Pro;
     font-style: normal;
@@ -184,11 +176,11 @@
   height: 5px;
   min-width: 5px;
 }
-  #c_input .row .v-input__slot
-  {
-    margin: -10px 0px -10px 0px;
-    padding: 0px;
-    box-shadow: none;
-    padding-left: 20px;
-    background-color: #F4F4FC !important;
-  }
+#c_input .row .v-input__slot
+{
+  margin: -10px 0px -10px 0px;
+  padding: 0px;
+  box-shadow: none;
+  padding-left: 20px;
+  background-color: #F4F4FC !important;
+}
