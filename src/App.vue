@@ -386,8 +386,7 @@ export default{
     mounted(){
       this.drawCircle();
       axios.get(this.awsApiUrl + "/package").then((response) => {
-        this.subscriptionPlan = response.data;
-        console.log(this.subscriptionPlan);
+        this.subscriptionPlan = response.data.reverse();
       });
     },
 created()
