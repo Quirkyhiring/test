@@ -1,186 +1,213 @@
 @font-face {
-  font-family: Acumin Pro;
-  src: url(Acumin-RPro.otf);
+	font-family: Acumin Pro;
+	src: url(Acumin-RPro.otf);
 }
-.premium{
-    /* Title */
-    padding: 30px;
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 65px;
-    /* or 162% */
-  
-    display: flex;
-    align-items: center;
-  
-    color: #404040;
-  }
-  .maintitle{
-    padding: 10px 10px 20px 10px;
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 40px;
-    /* or 125% */
-    display: flex;
-    align-items: center;
-    color: #3CB1E5;
-  }
-  .card:focus{
-    background-color: #D3EDF9;
-  }
-  .card{
-    padding-top: 20px;
-    margin: 10px;
-    background: #FFFFFF;
-    /* card_shadow */
-    box-shadow: 0px 2px 6px rgba(82, 82, 82, 0.25);
-    border-radius: 6px;
-    height: 158px;
-  }
-  .billing-cardtext{
-    padding: 20px 40px 0px 40px;
-  }
-  .card-payment:focus{
-    background-color: #D3EDF9;
-  }
-  
-  .card-payment{
-    margin: 10px;
-    height: 220px;
-    display: flex;
-  }
-  .card-title{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    /* or 162% */
-    display: flex;
-    align-items: center;
-    color: #263238;
-  }
-  .SubTitle{
-    padding: 10px 0px 30px 0px;
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    /* or 361% */
-    display: flex;
-    align-items: center;
-    color: #555555;
-  }
-  .Price{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    /* or 203% */
-    text-align: right;
-    color: #082947;
-  }
-  
-  .today-title{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    /* or 125% */
-    
-    display: flex;
-    align-items: center;
-    
-    color: #3E3E3E;
-  }
-  .today-subtitle{
-    padding: 10px 0px 30px 0px;
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    /* or 361% */
-    
-    display: flex;
-    align-items: center;
-    
-    color: #555555;
-  }
-  .today-price{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    /* or 125% */
-    text-align: right;
-    display: flexbox;
-    color: #3E3E3E;
-  }
-  
-  .text-expiration{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-    color: rgba(77, 79, 92, 0.62);
-  }
-  .text-review{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  .text-form{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-  }
-  .text-dialog{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 22px;
-    line-height: 30px;
-    /* or 136% */
-    display: flex;
-    align-items: center;
-    color: #4D4F5C;
-  }
-  .text-okay{
-    font-family: Acumin Pro;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    /* or 150% */
-    border-radius: 0px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  .button{
-    border-radius: 4px;
-    width: 170px;
-    height: 48px;
-  }
-.v-stepper__step__step{
-  margin-top: 8px;
-  width: 5px;
-  height: 5px;
-  min-width: 5px;
+
+.premium {
+	/* Title */
+	padding: 30px;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 40px;
+	line-height: 65px;
+	/* or 162% */
+	display: flex;
+	align-items: center;
+	color: #404040;
 }
-#c_input .row .v-input__slot
-{
-  margin: -10px 0px -10px 0px;
-  padding: 0px;
-  box-shadow: none;
-  padding-left: 20px;
-  background-color: #F4F4FC !important;
+
+.maintitle {
+	padding: 10px 10px 20px 10px;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 40px;
+	/* or 125% */
+	display: flex;
+	align-items: center;
+	color: #3CB1E5;
+}
+
+.card:focus {
+	background-color: #D3EDF9;
+}
+
+.card {
+	padding-top: 20px;
+	margin: 10px;
+	background: #FFFFFF;
+	/* card_shadow */
+	box-shadow: 0px 2px 6px rgba(82, 82, 82, 0.25);
+	border-radius: 6px;
+	height: 158px;
+}
+
+.billing-cardtext {
+	padding: 20px 40px 0px 40px;
+}
+
+.card-payment:focus {
+	background-color: #D3EDF9;
+}
+
+.card-payment {
+	margin: 10px;
+	height: 220px;
+	display: flex;
+}
+
+.card-title {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 40px;
+	/* or 162% */
+	display: flex;
+	align-items: center;
+	color: #263238;
+}
+
+.SubTitle {
+	padding: 10px 0px 30px 0px;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	/* or 361% */
+	display: flex;
+	align-items: center;
+	color: #555555;
+}
+
+.Price {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 32px;
+	/* or 203% */
+	text-align: right;
+	color: #082947;
+}
+
+.today-title {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 32px;
+	/* or 125% */
+	display: flex;
+	align-items: center;
+	color: #3E3E3E;
+}
+
+.today-subtitle {
+	padding: 10px 0px 30px 0px;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	/* or 361% */
+	display: flex;
+	align-items: center;
+	color: #555555;
+}
+
+.today-price {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 32px;
+	/* or 125% */
+	text-align: right;
+	display: flexbox;
+	color: #3E3E3E;
+}
+
+.text-expiration {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 18px;
+	color: rgba(77, 79, 92, 0.62);
+}
+
+.text-review {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.text-form {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 18px;
+}
+
+.text-dialog {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+	line-height: 30px;
+	/* or 136% */
+	display: flex;
+	align-items: center;
+	color: #4D4F5C;
+}
+
+.text-okay {
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	/* or 150% */
+	border-radius: 0px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.button {
+	border-radius: 4px;
+	width: 170px;
+	height: 48px;
+}
+
+.v-stepper__step__step {
+	margin-top: 8px;
+	width: 5px;
+	height: 5px;
+	min-width: 5px;
+}
+
+#c_input .row .v-input__slot {
+	margin: -10px 0px -10px 0px;
+	padding: 0px;
+	box-shadow: none;
+	padding-left: 20px;
+	background-color: #F4F4FC !important;
+}
+
+.payment-note {
+  width: 30%;
+  height: 45px;
+  background: #3CB1E5;
+  border-radius: 6px 0px 6px 0px;
+  float: right;
+  position: relative;
+  top: -40px;
+  text-align: center;
+}
+
+.note-value {
+  color: #fff;
+  margin-top: 10px;
 }

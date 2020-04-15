@@ -47,9 +47,14 @@
             </div>
 
           </v-card-text>
+
           <div v-if="type === sub.id">
-            <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
+            <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px; position: relative; top: -11px">
             </v-avatar>
+          </div>
+        
+          <div v-if="sub.note.length > 0" class="payment-note" style="display: block">
+            <p class="note-value">{{sub.note}}</p>
           </div>
         </v-card>
        </v-col>
@@ -307,6 +312,9 @@ export default{
       {
         this.isCycleSelected = false;
         this.type = sub.id;
+        var notes = document.getElementsByClassName("payment-note");
+        notes[sub.id - 1].style.display = "none";
+        notes[2 - sub.id].style.display = "block";
       },
     onMasterCard(){
       this.isPaymentMethodSelected = false;
