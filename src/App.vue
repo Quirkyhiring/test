@@ -25,60 +25,35 @@
     <v-stepper-items>
       <v-stepper-content step="1">
         <div class = "maintitle"> Billing Cycle </div>
-        <v-row no-gutters>
-          <v-col cols = "12" sm = "6">
-            <v-card class = "card" @click="onMonth()" id = "month">
-              <v-card-text class = "billing-cardtext">
-                <v-row no-gutters>
-                  <v-col cols = "12" sm="6" xs="6">
-                    <p class="card-title">
-                      Monthly
-                    </p>
-                  </v-col>
-                  <v-col cols = "12" sm="6" xs="6">
-                    <p class="Price">
-                      $15/mon
-                    </p>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-                <div class="SubTitle">
-                  Monthly after free trial
-                </div>
-              </v-card-text>
-              <div v-if="type === '$15 each month'">
-                <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
-                </v-avatar>
-              </div>
-            </v-card>
-          </v-col>
-          <v-col cols = "12" sm = "6" xs="6">
-            <v-card class = "card" @click="onAnnual()">
-              <v-card-text class = "billing-cardtext">
-                <v-row no-gutters>
-                  <v-col cols = "12" sm = "6" xs="6">
-                    <p class="card-title">
-                      Annual
-                    </p>
-                  </v-col>
-                  <v-col cols = "12" sm = "6" xs="6">
-                    <p class="Price">
-                      $126
-                    </p>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-                <div class="SubTitle">
-                  Annual after free trial
-                </div>
-              </v-card-text>
-              <div v-if="type === '$126 each year'">
-                <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
-                </v-avatar>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
+    <v-row no-gutters>
+      <v-col cols = "12" sm = "6" v-for="sub in subscriptionPlan" :key="sub.id">
+        <v-card class = "card" @click="onMonth(sub)">
+          <v-card-text>
+            <v-row no-gutters>
+              <v-col cols = "12" sm="6" xs="6">
+                <p class="card-title">
+                  {{sub.payment_plan_name}}
+                </p>
+              </v-col>
+              <v-col cols = "12" sm="6" xs="6">
+                <p class="Price">
+                  {{sub.payment_plan == "MON" ? "$" + sub.price + "/mon" :  "$" + sub.price}}
+                </p>
+              </v-col>
+            </v-row>
+            <v-divider></v-divider>
+            <div class="SubTitle">
+              {{sub.payment_plan_name}} after free trial
+            </div>
+
+          </v-card-text>
+          <div v-if="type === sub.id">
+            <v-avatar tile color="#3CB1E5" width="100%" height="10px" style="border-radius: 0px 0px 6px 6px">
+            </v-avatar>
+          </div>
+        </v-card>
+       </v-col>
+      </v-row>
         <v-row no-gutters style = "margin-bottom: 50px">
           <v-col cols = "12" sm = "12"  xs="12">
             <v-card class = "card">
@@ -276,7 +251,7 @@
                 </template>
                 <v-card>
                   <v-card-text style = "padding: 20px 60px 20px 50px">
-                    <p class = "text-dialog">Bek Madjidov, You are all set! We have emailed your receipt.</p>
+                    <p class = "text-dialog">{{alert}}</p>
                   </v-card-text>
                   <v-btn class = "text-okay" width = "100%" color = "info" @click="onOKAY()" height="70px">OKAY</v-btn>
                 </v-card>
@@ -292,6 +267,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default{
   data: () => ({
@@ -321,20 +297,17 @@ export default{
     year:"",
     SecurityCode:"",
     country:"",
-    PostalCode:""
+    PostalCode:"",
+    subscriptionPlan: [],
+    awsApiUrl: "http://ec2-18-223-131-167.us-east-2.compute.amazonaws.com:8080/api/billing",
+    alert: ""
   }),
   methods:{
-    onMonth()
+    onMonth(sub)
       {
         this.isCycleSelected = false;
-        this.type = '$15 each month';
-        //alert("asdf");
+        this.type = sub.id;
       },
-    onAnnual(){
-      this.isCycleSelected = false;
-      this.type = '$126 each year';
-      //alert("asdf");      
-    },
     onMasterCard(){
       this.isPaymentMethodSelected = false;
       this.bMasterCard = true;
@@ -347,11 +320,11 @@ export default{
     },
     onPlaceOrder(){
       console.log("onPlaceOrder");
-      /*
+
       var formData = new FormData();
       formData.append('payment_method', "VIS");
-      formData.append('first_name', this.first_name);
-      formData.append('last_name', this.last_name);
+      formData.append('first_name', this.FirstName);
+      formData.append('last_name', this.LastName);
       formData.append('card_number', this.CreditNumberCard);
       formData.append('expiration_month',  this.month);
       formData.append('expiration_year', this.year);
@@ -359,10 +332,11 @@ export default{
       formData.append('country', this.country);
       formData.append('postal_code', this.postal_code);
       formData.append('account', 1);
-      Axios.post('http://ec2-18-223-131-167.us-east-2.compute.amazonaws.com:8080/api/billing/payment/', {
+      
+      axios.post('http://ec2-18-223-131-167.us-east-2.compute.amazonaws.com:8080/api/billing/payment/', {
           payment_method: '' + "VIS",
-          first_name: '' + this.first_name,
-          last_name: '' + this.last_name,
+          first_name: '' + this.FirstName,
+          last_name: '' + this.LastName,
           card_number: '' + this.CreditNumberCard,
           expiration_month: '' + this.month,
           expiration_year: '' + this.year,
@@ -371,29 +345,13 @@ export default{
           postal_code: '' + this.postal_code,
           account: '' + 1
         })
-        */
-
-      this.$store.dispatch('postData', {
-          payment_method: "VIS",
-          first_name: this.first_name,
-          last_name: this.last_name,
-          card_number: this.CreditNumberCard,
-          expiration_month: this.month,
-          expiration_year: this.year,
-          cvv: "090",
-          country: this.country,
-          postal_code: this.postal_code,
-          account: "test31@testing.com"
-         }
-      )
-      .then(resp =>{
-        if(resp.status == 200){
-          console.log("success");
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
+        .then((response) => {
+          this.alert = response.data.detail;
+        })
+        .catch((e) => {
+          console.log(e);
+          this.alert = "Ops";
+        });
     },
     drawCircle(){
       var steps = document.getElementsByClassName("v-stepper__step__step");
@@ -419,6 +377,10 @@ export default{
     },
     mounted(){
       this.drawCircle();
+      axios.get(this.awsApiUrl + "/package").then((response) => {
+        this.subscriptionPlan = response.data;
+        console.log(this.subscriptionPlan);
+      });
     },
 created()
     {
